@@ -143,9 +143,9 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: 'myActivo - Define',
-        short_name: 'myActivo - Define',
-        description: 'Define module of the Digital Asset Management framework. Part of the myActivo platform',
+        name: 'myActivo',
+        short_name: 'myActivo',
+        description: 'Web User Interface for the myActivo Digital Asset Management platform.',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -210,7 +210,7 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'define-ui'
+        appId: 'web-ui'
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

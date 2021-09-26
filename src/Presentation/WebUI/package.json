@@ -1,9 +1,9 @@
 {
   "name": "web-ui",
   "version": "0.0.1",
-  "description": "Web User Interface of the Digital Asset Management framework. Part of the myActivo platform",
+  "description": "Web User Interface for the myActivo Digital Asset Management platform.",
   "productName": "myActivo",
-  "author": "carlos.gamez@myactivo.com",
+  "author": "carlosgamezdev <carlos.gamez@myactivo.com>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",

@@ -1,43 +1,49 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <!-- <q-btn
+        <q-btn
           flat
           dense
           round
           icon="menu"
           aria-label="Menu"
           @click="toggleLeftDrawer"
-        /> -->
+        />
 
         <q-toolbar-title>
-          myActivo - Define
+          myActivo
         </q-toolbar-title>
 
-
+        <!-- <div>Quasar v{{ $q.version }}</div> -->
       </q-toolbar>
     </q-header>
 
-    <!-- <q-drawer
+    <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
+      :mini="!leftDrawerOpen || miniState"
       bordered
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
         />
       </q-list>
-    </q-drawer> -->
+
+      <div class="absolute" style="bottom: 15px; right: 10px">
+          <q-btn
+            dense
+            round
+            unelevated
+            color="secondary"
+            :icon="miniState ? 'chevron_right' : 'chevron_left'"
+            @click="miniState = !miniState"
+          />
+        </div>
+    </q-drawer>
 
     <q-page-container>
       <router-view />
@@ -46,68 +52,64 @@
 </template>
 
 <script lang="ts">
-// import EssentialLink from 'components/EssentialLink.vue'
+import EssentialLink from 'components/EssentialLink.vue'
 
-// const linksList = [
-//   {
-//     title: 'Docs',
-//     caption: 'quasar.dev',
-//     icon: 'school',
-//     link: 'https://quasar.dev'
-//   },
-//   {
-//     title: 'Github',
-//     caption: 'github.com/quasarframework',
-//     icon: 'code',
-//     link: 'https://github.com/quasarframework'
-//   },
-//   {
-//     title: 'Discord Chat Channel',
-//     caption: 'chat.quasar.dev',
-//     icon: 'chat',
-//     link: 'https://chat.quasar.dev'
-//   },
-//   {
-//     title: 'Forum',
-//     caption: 'forum.quasar.dev',
-//     icon: 'record_voice_over',
-//     link: 'https://forum.quasar.dev'
-//   },
-//   {
-//     title: 'Twitter',
-//     caption: '@quasarframework',
-//     icon: 'rss_feed',
-//     link: 'https://twitter.quasar.dev'
-//   },
-//   {
-//     title: 'Facebook',
-//     caption: '@QuasarFramework',
-//     icon: 'public',
-//     link: 'https://facebook.quasar.dev'
-//   },
-//   {
-//     title: 'Quasar Awesome',
-//     caption: 'Community Quasar projects',
-//     icon: 'favorite',
-//     link: 'https://awesome.quasar.dev'
-//   }
-// ];
+const modulesList = [
+  {
+    title: 'Define',
+    caption: 'Create data structures',
+    icon: 'account_tree',
+    link: 'https://app.myactivo.com'
+  },
+  {
+    title: 'Acquire',
+    caption: 'Import from any source',
+    icon: 'drive_file_move',
+    link: 'https://app.myactivo.com'
+  },
+  {
+    title: 'Analyse',
+    caption: 'Create models and algorithms',
+    icon: 'data_object',
+    link: 'https://app.myactivo.com'
+  },
+  {
+    title: 'Visualise',
+    caption: 'Gain insights',
+    icon: 'insights',
+    link: 'https://app.myactivo.com'
+  },
+  {
+    title: 'Decide',
+    caption: 'Compare and record decisions',
+    icon: 'alt_route',
+    link: 'https://app.myactivo.com'
+  },
+  {
+    title: 'Store',
+    caption: 'Store all your data',
+    icon: 'storage',
+    link: 'https://app.myactivo.com'
+  }
+];
 
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'MainLayout',
 
-  // components: {
-  //   EssentialLink
-  // },
+  components: {
+    EssentialLink
+  },
 
   setup () {
     const leftDrawerOpen = ref(false)
+    const miniState = ref(false)
 
     return {
-      // essentialLinks: linksList,
+      essentialLinks: modulesList,
       leftDrawerOpen,
+      miniState,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
