@@ -14,8 +14,6 @@
         <q-toolbar-title>
           myActivo
         </q-toolbar-title>
-
-        <!-- <div>Quasar v{{ $q.version }}</div> -->
       </q-toolbar>
     </q-header>
 
@@ -33,7 +31,20 @@
         />
       </q-list>
 
-      <div class="absolute" style="bottom: 15px; right: 10px">
+      <q-separator />
+
+      <q-list>
+        <EssentialLink
+          v-bind="{
+            title: 'Settings',
+            caption: 'Manage your preferences',
+            icon: 'settings',
+            to: 'settings'
+          }"
+        />
+      </q-list>
+
+      <div class="absolute" style="bottom: 15px; right: 10px;">
           <q-btn
             dense
             round
@@ -59,37 +70,37 @@ const modulesList = [
     title: 'Define',
     caption: 'Create data structures',
     icon: 'account_tree',
-    link: 'https://app.myactivo.com'
+    to: 'define'
   },
   {
     title: 'Acquire',
     caption: 'Import from any source',
     icon: 'drive_file_move',
-    link: 'https://app.myactivo.com'
+    to: 'acquire'
   },
   {
     title: 'Analyse',
     caption: 'Create models and algorithms',
     icon: 'data_object',
-    link: 'https://app.myactivo.com'
+    to: 'analyse'
   },
   {
     title: 'Visualise',
     caption: 'Gain insights',
     icon: 'insights',
-    link: 'https://app.myactivo.com'
+    to: 'visualise'
   },
   {
     title: 'Decide',
     caption: 'Compare and record decisions',
     icon: 'alt_route',
-    link: 'https://app.myactivo.com'
+    to: 'decide'
   },
   {
     title: 'Store',
     caption: 'Store all your data',
     icon: 'storage',
-    link: 'https://app.myactivo.com'
+    to: 'store'
   }
 ];
 
