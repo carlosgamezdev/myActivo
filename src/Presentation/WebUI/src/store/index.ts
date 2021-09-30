@@ -5,9 +5,9 @@ import {
   Store as VuexStore,
   useStore as vuexUseStore,
 } from 'vuex'
+import VuexORM from '@vuex-orm/core'
 
-// import example from './module-example'
-// import { ExampleStateInterface } from './module-example/state';
+import actions from './actions'
 
 /*
  * If not building with SSR mode, you can
@@ -18,12 +18,8 @@ import {
  * with the Store instance.
  */
 
-export interface StateInterface {
-  // Define your own store structure, using submodules if needed
-  // example: ExampleStateInterface;
-  // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
-  example: unknown
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface StateInterface {}
 
 // provide typings for `this.$store`
 declare module '@vue/runtime-core' {
@@ -37,12 +33,12 @@ export const storeKey: InjectionKey<VuexStore<StateInterface>> = Symbol('vuex-ke
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore<StateInterface>({
-    modules: {
-      // example
-    },
+    plugins: [
+      VuexORM.install()
+    ],
 
-    // enable strict mode (adds overhead!)
-    // for dev mode and --debug builds only
+    actions: actions,
+
     strict: !!process.env.DEBUGGING
   })
 
