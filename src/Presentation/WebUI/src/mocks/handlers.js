@@ -1,4 +1,6 @@
 import { rest } from 'msw'
+import User from 'src/models/User'
+import Setting from 'src/models/Setting'
 
 export default [
   rest.get('/api/modules', (req, res, ctx) => {
@@ -41,5 +43,40 @@ export default [
         to: 'store'
       }
     ]))
+  }),
+  rest.get('/api/user/:id', (req, res, ctx) => {
+
+    const { id } = req.params
+
+    if(id == 'undefined') { throw new Error('User ID is required.') }
+
+    const user = new User()
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    user.id = id
+    user.name = 'Carlos Gamez'
+    user.email = 'carlos.gamez@myactivo.com'
+
+    const screenMode = new Setting()
+    screenMode.userId = user.id
+    screenMode.name = 'screenMode'
+    screenMode.type = 'string'
+    screenMode.value = 'dark'
+
+    const appTitle = new Setting({
+      userId: user.id,
+      name: 'appTitle',
+      type: 'string',
+      value: `myActivo - ${user.name}`
+    })
+
+    user.settings = [
+      appTitle,
+      screenMode
+    ]
+
+    return res(
+      ctx.json(user)
+    )
   })
 ]

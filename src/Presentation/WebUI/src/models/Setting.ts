@@ -1,10 +1,14 @@
-import { Model, Attr, Str, Uid } from '@vuex-orm/core'
+import { Model, Attr, Str, Uid, BelongsTo } from '@vuex-orm/core'
+import User from './User'
 
 export default class Setting extends Model {
   static entity = 'settings'
 
   @Uid()
   id!: string
+
+  @Attr(null)
+  userId!: string | null
 
   @Str('')
   type!: string
@@ -13,5 +17,8 @@ export default class Setting extends Model {
   name!: string
 
   @Attr(null)
-  value!: any
+  value!: string | number
+
+  @BelongsTo(() => User, 'userId')
+  user!: User | null
 }

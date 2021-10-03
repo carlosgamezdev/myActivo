@@ -9,6 +9,9 @@ import VuexORM from '@vuex-orm/core'
 
 import actions from './actions'
 
+import ui from './ui'
+import { UiStateInterface } from './ui/state'
+
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
@@ -19,7 +22,9 @@ import actions from './actions'
  */
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface StateInterface {}
+export interface StateInterface {
+  ui: UiStateInterface
+}
 
 // provide typings for `this.$store`
 declare module '@vue/runtime-core' {
@@ -33,6 +38,10 @@ export const storeKey: InjectionKey<VuexStore<StateInterface>> = Symbol('vuex-ke
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore<StateInterface>({
+    modules: {
+      ui
+    },
+
     plugins: [
       VuexORM.install()
     ],

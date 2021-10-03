@@ -1,11 +1,16 @@
 <template>
-  <q-page padding>
-    <h1>Define</h1>
+  <q-page class="row items-center justify-evenly">
+
   </q-page>
 </template>
 
-<script>
-export default {
-  // name: 'PageName',
-}
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'Define',
+  setup() {
+    return { }
+  }
+})
 </script>

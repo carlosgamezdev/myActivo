@@ -16,6 +16,16 @@
       }"
     />
   </q-list>
+  <div class="absolute" style="bottom: 15px; right: 10px;">
+    <q-btn
+      dense
+      round
+      unelevated
+      color="secondary"
+      :icon="miniState ? 'chevron_right' : 'chevron_left'"
+      @click="toggleMiniState"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -39,8 +49,12 @@ export default defineComponent({
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     void store.dispatch('getAll','/api/modules').then((res) => moduleRepo.fresh(res.data))
 
+    const miniState = computed(() => store.state.ui.miniState)
+
     return {
-      modulesList
+      modulesList,
+      miniState,
+      toggleMiniState() { store.commit('ui/toggleMiniState') }
     }
   }
 })

@@ -1,4 +1,5 @@
-import { Model, Str, Uid } from '@vuex-orm/core'
+import { HasMany, Model, Str, Uid } from '@vuex-orm/core'
+import Setting from './Setting'
 
 export default class User extends Model {
   static entity = 'users'
@@ -8,4 +9,10 @@ export default class User extends Model {
 
   @Str('')
   name!: string
+
+  @Str('')
+  email!: string
+
+  @HasMany(() => Setting,'userId')
+  settings!: Setting[]
 }

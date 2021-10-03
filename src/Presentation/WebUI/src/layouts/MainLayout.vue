@@ -1,22 +1,7 @@
 <template>
-  <q-layout view="hHh Lpr lFf">
+  <q-layout v-if="userLoaded" view="hHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="apps"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          myActivo
-        </q-toolbar-title>
-
-        <q-avatar color="secondary" icon="person" />
-      </q-toolbar>
+      <MainToolbar />
     </q-header>
 
     <q-drawer
@@ -26,17 +11,6 @@
       bordered
     >
       <ModuleSidebar />
-
-      <div class="absolute" style="bottom: 15px; right: 10px;">
-          <q-btn
-            dense
-            round
-            unelevated
-            color="secondary"
-            :icon="miniState ? 'chevron_right' : 'chevron_left'"
-            @click="miniState = !miniState"
-          />
-        </div>
     </q-drawer>
 
     <q-page-container>
@@ -46,26 +20,36 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import ModuleSidebar from './ModuleSidebar.vue'
+import { defineComponent, computed } from 'vue'
+import { useStore } from 'src/store/index'
+import ModuleSidebar from 'src/components/ModuleSidebar.vue'
+import MainToolbar from 'src/components/MainToolbar.vue'
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    ModuleSidebar
+    ModuleSidebar,
+    MainToolbar
   },
 
   setup () {
-    const leftDrawerOpen = ref(false)
-    const miniState = ref(false)
+    const store = useStore()
+    const leftDrawerOpen = computed({
+      get(){
+        return store.state.ui.leftDrawerOpen
+      },
+      set(value: boolean){
+        store.commit('ui/setLeftDrawer',value)
+      }
+      })
+    const userLoaded = computed(() => store.state.ui.userLoaded)
+    const miniState = computed(() => store.state.ui.miniState)
 
     return {
       leftDrawerOpen,
-      miniState,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+      userLoaded,
+      miniState
     }
   }
 })
