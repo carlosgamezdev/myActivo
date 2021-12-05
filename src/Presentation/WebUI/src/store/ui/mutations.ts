@@ -2,6 +2,9 @@ import { MutationTree } from 'vuex';
 import { UiStateInterface } from './state';
 
 const mutation: MutationTree<UiStateInterface> = {
+  setAppTitle(state: UiStateInterface, value: string | null) {
+    state.appTitle = value ? value : 'myActivo'
+  },
   setUserLoaded (state: UiStateInterface, value: boolean) {
     state.userLoaded = value
   },

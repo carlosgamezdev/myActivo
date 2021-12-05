@@ -1,4 +1,5 @@
 export interface UiStateInterface {
+  appTitle: string,
   userLoaded: boolean,
   leftDrawerOpen: boolean,
   miniState: boolean
@@ -6,6 +7,7 @@ export interface UiStateInterface {
 
 function state(): UiStateInterface {
   return {
+    appTitle: 'myActivo',
     userLoaded: false,
     leftDrawerOpen: false,
     miniState: false

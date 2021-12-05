@@ -32,7 +32,7 @@
 import { defineComponent, computed } from 'vue'
 import { useStore } from 'src/store/index'
 import ModuleLink from 'components/ModuleLink.vue'
-import Module from '../models/Module'
+import Module from 'src/models/Module'
 
 export default defineComponent({
   name: 'ModuleSidebar',

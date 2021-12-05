@@ -4,8 +4,15 @@
   </q-page>
 </template>
 
-<script>
-export default {
-  // name: 'PageName',
-}
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { useStore } from 'src/store'
+
+export default defineComponent({
+  name: 'Visualise',
+  setup() {
+    const store = useStore()
+    store.commit('ui/setAppTitle', 'myActivo - Visualise')
+  }
+})
 </script>
