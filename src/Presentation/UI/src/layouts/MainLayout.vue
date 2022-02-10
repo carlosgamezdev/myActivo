@@ -1,18 +1,19 @@
-<script>
-  export default {
-    name: 'MainLayout'
-  }
-</script>
-
-<script setup>
+<script setup lang="ts">
   import { computed } from 'vue'
   import { useUiStore } from 'src/store/uiStore'
   import TopToolbar from 'src/layouts/TopToolbar.vue'
   import Sidebar from 'src/layouts/Sidebar.vue'
 
   const uiStore = useUiStore()
-  const leftDrawerOpen = computed(() => uiStore.leftDrawerOpen)
   const miniState = computed(() => uiStore.miniState)
+  const leftDrawerOpen = computed({
+    get(){
+        return uiStore.leftDrawerOpen
+      },
+    set(value: boolean){
+      uiStore.setLeftDrawer(value)
+    }
+  })
 </script>
 
 <template>

@@ -1,10 +1,4 @@
-<script>
-  export default {
-    name: 'Define'
-  }
-</script>
-
-<script setup>
+<script setup lang="ts">
   import { useMeta } from 'quasar'
   import DataStructureEditor from 'src/components/DataStructureEditor.vue'
   import { useUiStore  } from 'src/store/uiStore'
@@ -16,5 +10,7 @@
 </script>
 
 <template>
-<data-structure-editor />
+<q-page padding>
+  <data-structure-editor />
+</q-page>
 </template>

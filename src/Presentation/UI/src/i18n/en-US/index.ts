@@ -1,7 +1,6 @@
-// This is just an example,
-// so you can safely delete all default props below
+import Messages from '../Messages'
 
 export default {
-  failed: 'Action failed',
-  success: 'Action was successful'
-};
+  [Messages.GENERIC.FAILED]: 'Action failed',
+  [Messages.GENERIC.SUCCESS]: 'Action was successful'
+}
